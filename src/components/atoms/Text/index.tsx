@@ -3,10 +3,19 @@ import styled from "styled-components";
 type TProps = {
     fontSize?: string;
     fontColor?: string;
-    fontWeight?: number;
+    fontWeight?: keyof typeof weight;
     lineHeight?: string;
     margin?: string;
     padding?: string;
+};
+
+const weight = {
+    thin: 100,
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
 };
 
 const Text = styled.p.attrs({ className: "text-base" })<TProps>`
@@ -17,7 +26,7 @@ const Text = styled.p.attrs({ className: "text-base" })<TProps>`
 
     ${({ lineHeight }) => lineHeight && `line-height:${lineHeight};`}
     
-    ${({ fontWeight }) => fontWeight && `font-weight:${fontWeight};`}
+    ${({ fontWeight }) => fontWeight && `font-weight:${weight[fontWeight]};`}
 
     ${({ margin }) => margin && `margin:${margin};`}
     

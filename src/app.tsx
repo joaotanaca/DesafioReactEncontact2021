@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "./components/organismos/Header";
 import Template from "./components/template";
 
