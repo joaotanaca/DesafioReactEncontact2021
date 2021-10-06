@@ -1,9 +1,15 @@
 import React from "react";
+import { useTheme } from "styled-components";
+import Template from "./components/template";
 
 export default function App() {
-  return (
-    <section>
-      <h1>Todos</h1>
-    </section>
-  );
+    const { primary } = useTheme();
+    return (
+        <Template>
+            <section>
+                <h1>Todos</h1>
+                <p>{primary.accentColor}</p>
+            </section>
+        </Template>
+    );
 }
