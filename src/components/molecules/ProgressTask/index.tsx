@@ -12,7 +12,7 @@ const ContainerProgressTask = styled.div.attrs({
 })`
     border: 2px solid ${(props) => props.theme.border};
     text {
-        transform: translateY(2px);
+        transform: translateY(1px);
         font-weight: 600;
     }
 `;
@@ -35,20 +35,17 @@ const ProgressTask: React.FC = () => {
                     styles={buildStyles({
                         pathColor: secondary.accentColor,
                         textColor: secondary.accentColor,
-                        textSize: 30,
+                        textSize: "1.5rem",
                     })}
                 />
             </div>
             <div className="text-left col-span-2">
-                <Heading level={4} fontWeight="semibold">
-                    Progresso das tarefas
-                </Heading>
                 <Text fontWeight="medium" fontSize="18px">
                     <span
                         style={{ color: secondary.accentColor }}
                         className="font-semibold"
                     >
-                        {total - completeTask}/{total}{" "}
+                        {completeTask}/{total}{" "}
                     </span>
                     tarefas prontas
                 </Text>

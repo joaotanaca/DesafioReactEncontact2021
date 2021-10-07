@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
 import { useMemo } from "react";
-import Text from "src/components/atoms/Text";
-import TaskCard from "src/components/molecules/TaskCard";
+import { motion } from "framer-motion";
 import { useTaskFramer } from "src/context/taskFramer";
 import { SchemasColors } from "src/styles/theme";
+import Text from "src/components/atoms/Text";
+import TaskCard from "src/components/molecules/TaskCard";
 
 const colorsTheme: SchemasColors[] = [
     "primary",
@@ -13,7 +13,7 @@ const colorsTheme: SchemasColors[] = [
 ];
 
 const TasksCards = () => {
-    const { items, controls, completeTask } = useTaskFramer();
+    const { items, controls, completeTask, total } = useTaskFramer();
 
     const renderTasks = useMemo(
         () =>
@@ -44,7 +44,7 @@ const TasksCards = () => {
         >
             <div className="px-4 col-span-full">
                 <Text fontWeight="semibold">
-                    Você tem {completeTask} tarefas não finalizadas
+                    Você tem {total - completeTask} tarefas não finalizadas
                 </Text>
             </div>
             <motion.div

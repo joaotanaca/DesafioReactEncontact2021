@@ -19,6 +19,14 @@ const schemas = {
 
 const theme = {
     ...schemas,
+    danger: {
+        accentColor: "#9A031E",
+        fontColor: "#FFF",
+    },
+    success: {
+        accentColor: "#26A96C",
+        fontColor: "#FFF",
+    },
     background: "#FFFFFF",
     fontColor: "#362627",
     border: "#f7f5f6",
