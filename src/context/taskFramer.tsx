@@ -26,21 +26,9 @@ export const useTaskFramer = () => useContext(TaskFramerContext);
 
 export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
     const [tasks, setTasks] = useState<TTask[]>([
-        {
-            id: "flrGI",
-            title: "Lavar os pratos",
-            isDone: false,
-        },
-        {
-            id: "flrGIa",
-            title: "Lavar os pratos",
-            isDone: false,
-        },
-        {
-            id: "flrGIb",
-            title: "Lavar os pratos",
-            isDone: false,
-        },
+        { id: "flrGI", title: "Lavar os pratos", isDone: false },
+        { id: "Tw-I9", title: "Cortar a grama", isDone: false },
+        { id: "7f2sf", title: "Comprar pão", isDone: false },
     ]);
     const controls = useAnimation();
     const y = useMotionValue(0);
