@@ -1,21 +1,31 @@
-const theme = {
+const schemas = {
     primary: {
-        accentColor: "#fe2e44",
+        accentColor: "#6B2737",
         fontColor: "#FFFFFF",
     },
     secondary: {
-        accentColor: "#1440a1",
-        fontColor: "#5aadda",
+        accentColor: "#0081A7",
+        fontColor: "#FFF",
     },
     tertiary: {
-        accentColor: "#fee646",
-        fontColor: "#886f07",
+        accentColor: "#E08E45",
+        fontColor: "#FFF",
     },
+    fourth: {
+        accentColor: "#F8F4A6",
+        fontColor: "#000",
+    },
+};
+
+const theme = {
+    ...schemas,
     background: "#FFFFFF",
     fontColor: "#362627",
     border: "#f7f5f6",
     iconColor: "#1d1d1d",
 };
+
+export type SchemasColors = keyof typeof schemas;
 
 export type Theme = typeof theme;
 

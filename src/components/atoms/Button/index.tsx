@@ -1,8 +1,9 @@
 import React, { HTMLAttributes } from "react";
+import { SchemasColors } from "src/styles/theme";
 import styled from "styled-components";
 
 type TProps = HTMLAttributes<HTMLButtonElement> & {
-    colorTheme?: "primary" | "secondary" | "tertiary";
+    colorTheme?: SchemasColors;
 };
 
 const ButtonStyled = styled.button<TProps>`

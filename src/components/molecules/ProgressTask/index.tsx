@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { FaTasks } from "react-icons/fa";
 import Heading from "src/components/atoms/Heading";
 import Text from "src/components/atoms/Text";
+import { useTaskFramer } from "src/context/taskFramer";
 import styled, { useTheme } from "styled-components";
 
 const ContainerProgressTask = styled.div.attrs({
@@ -18,12 +19,18 @@ const ContainerProgressTask = styled.div.attrs({
 
 const ProgressTask: React.FC = () => {
     const { secondary } = useTheme();
+    const { completeTask, total } = useTaskFramer();
+    const percentage = useMemo(
+        () => completeTask / (total * 0.01),
+        [completeTask, total],
+    );
+
     return (
         <ContainerProgressTask>
             <div className="col-span-1" style={{ width: 80, height: 80 }}>
                 <CircularProgressbar
-                    value={73}
-                    text={`${73}%`}
+                    value={percentage}
+                    text={`${Math.round(percentage)}%`}
                     counterClockwise
                     styles={buildStyles({
                         pathColor: secondary.accentColor,
@@ -41,7 +48,7 @@ const ProgressTask: React.FC = () => {
                         style={{ color: secondary.accentColor }}
                         className="font-semibold"
                     >
-                        14/22{" "}
+                        {total - completeTask}/{total}{" "}
                     </span>
                     tarefas prontas
                 </Text>
