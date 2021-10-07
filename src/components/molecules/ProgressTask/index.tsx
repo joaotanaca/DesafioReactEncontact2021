@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { FaTasks } from "react-icons/fa";
-import Heading from "src/components/atoms/Heading";
 import Text from "src/components/atoms/Text";
 import { useTaskFramer } from "src/context/taskFramer";
 import styled, { useTheme } from "styled-components";
