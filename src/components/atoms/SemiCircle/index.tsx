@@ -16,7 +16,7 @@ const SemiCircle: React.FC<TProps> = ({ bottom = false }) => {
             viewBox={`0 0 ${size} ${size}`}
             style={{
                 top: !bottom ? "25%" : "-75%",
-                right: "-17%",
+                right: "-20%",
             }}
         >
             <circle
