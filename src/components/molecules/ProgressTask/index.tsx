@@ -7,7 +7,7 @@ import styled, { useTheme } from "styled-components";
 
 const ContainerProgressTask = styled.div.attrs({
     className:
-        "grid grid-cols-4 gap-4 items-center mt-8 sm:mt-0 rounded-3xl p-2 col-span-4 sm:col-span-2 order-3 sm:order-2",
+        "grid grid-cols-4 sm:gap-0 lg:gap-4 items-center mt-8 sm:mt-0 rounded-3xl p-2 col-span-4 sm:col-span-2 order-3 sm:order-2",
 })`
     border: 2px solid ${(props) => props.theme.border};
     text {

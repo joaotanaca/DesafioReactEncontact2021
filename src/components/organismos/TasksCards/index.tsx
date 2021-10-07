@@ -24,8 +24,8 @@ const TasksCards: React.FC<TProps> = ({ tasks }) => {
         [tasks],
     );
     return (
-        <div className="w-full flex flex-col gap-6">
-            <div className="px-4">
+        <div className="w-full flex flex-col sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-6">
+            <div className="px-4 col-span-full">
                 <Text fontWeight="semibold">
                     Você tem 5 tarefas não finalizadas
                 </Text>
