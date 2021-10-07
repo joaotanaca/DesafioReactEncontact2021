@@ -29,7 +29,14 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
         { id: "flrGI", title: "Lavar os pratos", isDone: false },
         { id: "Tw-I9", title: "Cortar a grama", isDone: false },
         { id: "7f2sf", title: "Comprar pão", isDone: false },
+        { id: "6", title: "Lavar os pratos", isDone: false },
+        { id: "5-I9", title: "Cortar a grama", isDone: false },
+        { id: "4", title: "Comprar pão", isDone: false },
+        { id: "3", title: "Lavar os pratos", isDone: false },
+        { id: "2-I9", title: "Cortar a grama", isDone: false },
+        { id: "1", title: "Comprar pão", isDone: false },
     ]);
+
     const controls = useAnimation();
     const y = useMotionValue(0);
     const scrollContainer = 150;

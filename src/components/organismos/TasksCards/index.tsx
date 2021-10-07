@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
 import { useTaskFramer } from "src/context/taskFramer";
 import { SchemasColors } from "src/styles/theme";
 import Text from "src/components/atoms/Text";
@@ -51,7 +51,9 @@ const TasksCards = () => {
                 className="flex flex-col sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-6 mt-4"
                 animate={controls}
             >
-                {renderTasks}
+                <AnimateSharedLayout type="switch">
+                    {renderTasks}
+                </AnimateSharedLayout>
             </motion.div>
         </div>
     );

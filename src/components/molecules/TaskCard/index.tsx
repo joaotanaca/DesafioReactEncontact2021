@@ -1,8 +1,8 @@
 import { motion, PanInfo, useAnimation } from "framer-motion";
-import React, { useCallback } from "react";
-import { IoMdDoneAll } from "react-icons/io";
+import React, { useCallback, useState } from "react";
+import { IoMdDoneAll, IoIosArrowDown } from "react-icons/io";
+import Button from "src/components/atoms/Button";
 import Heading from "src/components/atoms/Heading";
-import SemiCircle from "src/components/atoms/SemiCircle";
 import Text from "src/components/atoms/Text";
 import { useTaskFramer } from "src/context/taskFramer";
 import TTask from "src/interfaces/Task";
@@ -17,14 +17,13 @@ type TProps = {
 };
 
 const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
-    const controls = useAnimation();
     const { onDelete, total } = useTaskFramer();
-
+    const controls = useAnimation();
+    const [open, setOpen] = useState(false);
     const handleDragEnd = useCallback(
         async (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
             const offset = info.offset.x;
             const velocity = info.velocity.x;
-
             if (offset > 250 || velocity > 1000) {
                 await controls.start({
                     x: "100%",
@@ -35,7 +34,7 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
                 controls.start({
                     x: 0,
                     opacity: 1,
-                    transition: { duration: 0.8 },
+                    transition: { duration: 0.2 },
                 });
             }
         },
@@ -44,7 +43,7 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
 
     return (
         <TaskContainer
-            className="w-full relative overflow-hidden rounded-3xl"
+            className="w-full relative overflow-hidden rounded-xl "
             style={{
                 marginBottom: total - 1 === index ? 0 : 10,
                 willChange: "transform",
@@ -52,29 +51,50 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
             }}
             whileTap={{ cursor: "grabbing" }}
             layout
-            transition={{ type: "spring", stiffness: 600, damping: 30 }}
+            transition={{ type: "spring" }}
             {...props}
         >
-            <BackgroudSection>
+            <BackgroudSection layout>
                 <IoMdDoneAll
                     size={30}
                     className="absolute  transform -translate-y-1/2 top-1/2 left-4"
                 />
             </BackgroudSection>
             <motion.div
-                className="card rounded-3xl flex flex-col items-start gap-3 justify-between w-full h-full relative overflow-hidden z-1"
+                className="card rounded-xl  flex flex-col items-start justify-between w-full h-full relative overflow-hidden z-1"
                 drag="x"
                 dragDirectionLock
                 onDragEnd={handleDragEnd}
                 animate={controls}
+                layout
             >
-                <Heading level={5} className="mt-4 mx-4">
+                <Heading
+                    level={5}
+                    className="p-4 flex justify-between items-center w-full"
+                >
                     {task.title}
+                    <Button
+                        className="z-50"
+                        onClick={(event) => {
+                            setOpen((prev) => !prev);
+                        }}
+                        colorTheme={props.colorTheme}
+                    >
+                        <IoIosArrowDown />
+                    </Button>
                 </Heading>
-                <Text fontSize="16px" margin="0 1rem 1rem">
-                    {task.id}
-                </Text>
-                <SemiCircle bottom={task.bottom} />
+                {open && (
+                    <motion.div
+                        layout
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <Text fontSize="16px" margin="0 1rem 1rem">
+                            {task.id}
+                        </Text>
+                    </motion.div>
+                )}
             </motion.div>
         </TaskContainer>
     );
