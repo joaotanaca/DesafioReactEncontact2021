@@ -1,5 +1,4 @@
 import React from "react";
-import { CgShapeHalfCircle } from "react-icons/cg";
 import Heading from "src/components/atoms/Heading";
 import SemiCircle from "src/components/atoms/SemiCircle";
 import Text from "src/components/atoms/Text";
@@ -17,6 +16,8 @@ const TaskContainer = styled.div<{
 }>`
     background-color: ${({ theme, colorTheme = "primary" }) =>
         theme[colorTheme].accentColor};
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     min-height: 100px;
     h1,
     h2,
@@ -33,6 +34,10 @@ const TaskContainer = styled.div<{
             stroke: ${({ theme, colorTheme = "primary" }) =>
                 theme[colorTheme].fontColor};
         }
+    }
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.22);
     }
 `;
 
