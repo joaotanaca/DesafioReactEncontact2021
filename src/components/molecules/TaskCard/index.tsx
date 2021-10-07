@@ -51,10 +51,9 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
             }}
             whileTap={{ cursor: "grabbing" }}
             layout
-            transition={{ type: "spring" }}
             {...props}
         >
-            <BackgroudSection layout>
+            <BackgroudSection>
                 <IoMdDoneAll
                     size={30}
                     className="absolute  transform -translate-y-1/2 top-1/2 left-4"
@@ -66,35 +65,37 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
                 dragDirectionLock
                 onDragEnd={handleDragEnd}
                 animate={controls}
-                layout
             >
-                <Heading
-                    level={5}
-                    className="p-4 flex justify-between items-center w-full"
+                <motion.div className="w-full" layout>
+                    <Heading
+                        level={5}
+                        className="p-4 flex justify-between items-center w-full"
+                    >
+                        {task.title}
+                        <Button
+                            className="z-50"
+                            onClick={(event) => {
+                                setOpen((prev) => !prev);
+                            }}
+                            colorTheme={props.colorTheme}
+                        >
+                            <IoIosArrowDown size={24} />
+                        </Button>
+                    </Heading>
+                </motion.div>
+                <motion.div
+                    layout
+                    animate={open ? "open" : "close"}
+                    style={{ opacity: 0, height: "0" }}
+                    variants={{
+                        open: { opacity: 1, height: "100%" },
+                        close: { opacity: 0, height: "0" },
+                    }}
                 >
-                    {task.title}
-                    <Button
-                        className="z-50"
-                        onClick={(event) => {
-                            setOpen((prev) => !prev);
-                        }}
-                        colorTheme={props.colorTheme}
-                    >
-                        <IoIosArrowDown />
-                    </Button>
-                </Heading>
-                {open && (
-                    <motion.div
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <Text fontSize="16px" margin="0 1rem 1rem">
-                            {task.id}
-                        </Text>
-                    </motion.div>
-                )}
+                    <Text fontSize="16px" margin="0 1rem 1rem">
+                        {task.id}
+                    </Text>
+                </motion.div>
             </motion.div>
         </TaskContainer>
     );

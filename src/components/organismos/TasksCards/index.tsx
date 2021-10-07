@@ -37,7 +37,6 @@ const TasksCards = () => {
             style={{
                 borderRadius: 30,
                 backgroundColor: "transparent",
-                overflow: "hidden",
                 position: "relative",
                 transform: "translateZ(0)",
             }}
@@ -51,9 +50,7 @@ const TasksCards = () => {
                 className="flex flex-col sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-6 mt-4"
                 animate={controls}
             >
-                <AnimateSharedLayout type="switch">
-                    {renderTasks}
-                </AnimateSharedLayout>
+                <AnimateSharedLayout>{renderTasks}</AnimateSharedLayout>
             </motion.div>
         </div>
     );
