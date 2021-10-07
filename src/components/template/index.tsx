@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Template = styled.div.attrs({
-    className: "flex flex-col items-center container px-3",
+    className: "flex flex-col items-center container px-6",
 })``;
 
 const TemplateComponent: React.FC = ({ children }) => {

@@ -10,16 +10,17 @@ const ButtonStyled = styled.button<TProps>`
         theme[colorTheme].accentColor};
     color: ${({ theme, colorTheme = "primary" }) =>
         theme[colorTheme].fontColor};
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
     svg {
         path {
-            fill: ${({ theme, colorTheme = "primary" }) =>
+            stroke: ${({ theme, colorTheme = "primary" }) =>
                 theme[colorTheme].fontColor};
         }
     }
 `;
 
 const Button: React.FC<TProps> = ({ children, className, ...props }) => (
-    <ButtonStyled {...props} className={`p-2 rounded-lg ${className}`}>
+    <ButtonStyled {...props} className={`p-2 rounded-2xl ${className}`}>
         {children}
     </ButtonStyled>
 );

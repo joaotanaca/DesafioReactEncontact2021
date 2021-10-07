@@ -33,10 +33,10 @@ const ProgressTask: React.FC = () => {
                 />
             </div>
             <div className="text-left col-span-2">
-                <Heading level={5} fontWeight="semibold">
+                <Heading level={4} fontWeight="semibold">
                     Progresso das tarefas
                 </Heading>
-                <Text fontWeight="medium">
+                <Text fontWeight="medium" fontSize="18px">
                     <span
                         style={{ color: secondary.accentColor }}
                         className="font-semibold"
