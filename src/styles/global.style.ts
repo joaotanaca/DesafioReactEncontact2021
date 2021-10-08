@@ -6,10 +6,21 @@ export default createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
+        transition: color 300ms, background-color 300ms;
+        width: 100%;
+        &[data-theme="dark"] {
+            background: #000;
+            filter: invert(1) hue-rotate(180deg);
+            img {
+                filter: invert(1) hue-rotate(180deg);
+            }
+        }
     }
+
     body{
         background-color: ${({ theme }) => theme.background};
         font-family: 'Open Sans', sans-serif;
+        min-height:100vh;
     }
     h1,h2,h3,h4,h5,h6{
         color: ${({ theme }) => theme.fontColor};

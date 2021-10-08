@@ -7,6 +7,7 @@ type TProps = HTMLAttributes<HTMLButtonElement> & {
 };
 
 const ButtonStyled = styled.button<TProps>`
+    width: min-content;
     background-color: ${({ theme, colorTheme = "primary" }) =>
         theme[colorTheme].accentColor};
     color: ${({ theme, colorTheme = "primary" }) =>
