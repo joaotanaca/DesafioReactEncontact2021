@@ -28,9 +28,9 @@ const Modal: React.FC<TProps> = ({ open, children }) => {
     return open ? (
         <ContainerModal>
             <motion.div
-                initial={{ top: mobile ? "150%" : "60%" }}
-                animate={{ top: mobile ? "85%" : "50%" }}
-                transition={{ type: "sprint", velocity: mobile ? 4 : 2 }}
+                initial={{ top: mobile ? "100%" : "60%" }}
+                animate={{ top: mobile ? "45%" : "50%" }}
+                transition={{ ease: "easeOut" }}
                 className="modal sm:rounded-xl transform  sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 pt-0 sm:pt-4 p-4"
             >
                 {children}
