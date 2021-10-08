@@ -6,7 +6,6 @@ export default createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
-        transition: color 300ms, background-color 300ms;
         width: 100%;
         &[data-theme="dark"] {
             background: #000;

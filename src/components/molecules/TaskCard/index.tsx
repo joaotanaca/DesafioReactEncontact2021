@@ -93,7 +93,7 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
                     }}
                 >
                     <Text fontSize="16px" margin="0 1rem 1rem">
-                        {task.id}
+                        {task.description || ""}
                     </Text>
                 </motion.div>
             </motion.div>

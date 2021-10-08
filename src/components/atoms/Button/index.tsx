@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 type TProps = HTMLAttributes<HTMLButtonElement> & {
     colorTheme?: SchemasColors;
+    minContent?: boolean;
 };
 
 const ButtonStyled = styled.button<TProps>`
-    width: min-content;
+    ${({ minContent }) => minContent && "width: min-content;"}
     background-color: ${({ theme, colorTheme = "primary" }) =>
         theme[colorTheme].accentColor};
     color: ${({ theme, colorTheme = "primary" }) =>

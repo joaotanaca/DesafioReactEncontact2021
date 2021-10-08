@@ -1,14 +1,17 @@
 import { motion, Variants } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import Button from "src/components/atoms/Button";
 import Heading from "src/components/atoms/Heading";
+import Modal from "src/components/atoms/Modal";
+import ModalCreateTask from "src/components/molecules/ModalCreateTask";
 import ProgressTask from "src/components/molecules/ProgressTask";
 import useDarkMode from "src/hooks/useDarkMode";
 import useMobile from "src/hooks/useMobile";
 
 const Header: React.FC = () => {
+    const [open, setOpen] = useState(false);
     const mobile = useMobile();
     const { toogleMode, mode } = useDarkMode();
     const variants: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
@@ -27,6 +30,7 @@ const Header: React.FC = () => {
                     onClick={toogleMode}
                     className="relative overflow-hidden"
                     style={{ width: mobile ? 38 : 40 }}
+                    minContent
                 >
                     <motion.div
                         className="flex justify-between"
@@ -38,9 +42,12 @@ const Header: React.FC = () => {
                         <MdLightMode size={24} />
                     </motion.div>
                 </Button>
-                <Button>
+                <Button onClick={() => setOpen((prev) => !prev)}>
                     <IoIosAdd size={24} />
                 </Button>
+                <Modal open={open}>
+                    <ModalCreateTask setOpen={setOpen} />
+                </Modal>
             </div>
         </div>
     );

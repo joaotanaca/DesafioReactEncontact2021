@@ -25,6 +25,7 @@
     "swr": "^1.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.1.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.1",
+    "@types/uuid": "^8.3.1",
     "nock": "^13.1.1"
   }
 }
