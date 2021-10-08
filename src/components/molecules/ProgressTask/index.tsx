@@ -32,7 +32,7 @@ const ProgressTask: React.FC = () => {
             <div className="col-span-1" style={{ width: 80, height: 80 }}>
                 <CircularProgressbar
                     value={percentage}
-                    text={`${Math.round(percentage)}%`}
+                    text={`${Math.round(percentage) ?? 0}%`}
                     counterClockwise
                     styles={buildStyles({
                         pathColor: secondary.accentColor,

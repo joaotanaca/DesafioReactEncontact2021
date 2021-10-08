@@ -20,7 +20,7 @@ const ContainerModal = styled(motion.div).attrs({
         width: 100%;
         background-color: white;
         border-top: 2px solid ${({ theme }) => theme.fontColor};
-
+        min-height: 400px;
         ${({ theme }) => mixins.sm`
             width: 400px;
             border: 2px solid ${theme.fontColor};
