@@ -6,10 +6,14 @@ import {
     useContext,
     ReactNode,
     useCallback,
+    useEffect,
 } from "react";
 import TTask from "src/interfaces/Task";
 import { getHeight } from "src/lib/taskFramer";
+import todos from "src/db";
+import { storageGet, storageSet } from "src/lib/localStorage";
 
+type TOnAdd = (index: TTask) => void;
 type TOnDelete = (index: number) => void;
 
 interface TaskFramer {
@@ -17,29 +21,37 @@ interface TaskFramer {
     total: number;
     controls: any;
     completeTask: number;
+    onAdd: TOnAdd;
     onDelete: TOnDelete;
 }
+
+const STORAGE_KEY = "tasks";
 
 const TaskFramerContext = createContext({} as TaskFramer);
 
 export const useTaskFramer = () => useContext(TaskFramerContext);
 
 export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
-    const [tasks, setTasks] = useState<TTask[]>([
-        { id: "flrGI", title: "Lavar os pratos", isDone: false },
-        { id: "Tw-I9", title: "Cortar a grama", isDone: false },
-        { id: "7f2sf", title: "Comprar pão", isDone: false },
-        { id: "6", title: "Lavar os pratos", isDone: false },
-        { id: "5-I9", title: "Cortar a grama", isDone: false },
-        { id: "4", title: "Comprar pão", isDone: false },
-        { id: "3", title: "Lavar os pratos", isDone: false },
-        { id: "2-I9", title: "Cortar a grama", isDone: false },
-        { id: "1", title: "Comprar pão", isDone: false },
-    ]);
+    const [tasks, setTasks] = useState<TTask[]>([]);
 
     const controls = useAnimation();
     const y = useMotionValue(0);
     const scrollContainer = 150;
+
+    useEffect(() => {
+        const storageTasks: TTask[] = storageGet(STORAGE_KEY);
+        setTasks(storageTasks.length ? storageTasks : todos);
+        !storageTasks.length && storageSet(STORAGE_KEY, todos);
+    }, []);
+
+    const onAdd: TOnAdd = useCallback((task: TTask) => {
+        setTasks((prev) => {
+            const prevTasks = [...prev];
+            prevTasks.push(task);
+            storageSet(STORAGE_KEY, prevTasks);
+            return prevTasks;
+        });
+    }, []);
 
     const onDelete: TOnDelete = useCallback(
         (index) => {
@@ -61,6 +73,7 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
             setTasks((prev) => {
                 const taskIndex = [...prev];
                 taskIndex[index].isDone = true;
+                storageSet(STORAGE_KEY, taskIndex);
                 return taskIndex;
             });
         },
@@ -73,6 +86,7 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
                 controls,
                 completeTask: tasks.filter((task) => task.isDone).length,
                 items: tasks,
+                onAdd,
                 onDelete,
                 total: tasks.length,
             }}
