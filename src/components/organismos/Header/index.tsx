@@ -45,7 +45,7 @@ const Header: React.FC = () => {
                 <Button onClick={() => setOpen((prev) => !prev)}>
                     <IoIosAdd size={24} />
                 </Button>
-                <Modal open={open}>
+                <Modal open={open} setOpen={setOpen}>
                     <ModalCreateTask setOpen={setOpen} />
                 </Modal>
             </div>

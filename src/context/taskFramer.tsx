@@ -13,16 +13,18 @@ import { getHeight } from "src/lib/taskFramer";
 import todos from "src/db";
 import { storageGet, storageSet } from "src/lib/localStorage";
 
+export type TTypeFunctionTask = "archive" | "unarchive" | "delete";
+
 type TOnAdd = (index: TTask) => void;
-type TOnDelete = (index: number) => void;
+
+type THandleChangeTask = (index: number, type: TTypeFunctionTask) => void;
 
 interface TaskFramer {
     items: TTask[];
-    total: number;
     controls: any;
     completeTask: number;
     onAdd: TOnAdd;
-    onDelete: TOnDelete;
+    handleChangeTask: THandleChangeTask;
 }
 
 const STORAGE_KEY = "tasks";
@@ -33,10 +35,15 @@ export const useTaskFramer = () => useContext(TaskFramerContext);
 
 export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
     const [tasks, setTasks] = useState<TTask[]>([]);
+    const [completeTask, setCompleteTask] = useState<number>(0);
 
     const controls = useAnimation();
     const y = useMotionValue(0);
     const scrollContainer = 150;
+
+    useEffect(() => {
+        setCompleteTask(tasks.filter((task) => task?.isDone).length);
+    }, [tasks]);
 
     useEffect(() => {
         const storageTasks: TTask[] = storageGet(STORAGE_KEY);
@@ -53,8 +60,8 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
         });
     }, []);
 
-    const onDelete: TOnDelete = useCallback(
-        (index) => {
+    const handleChangeTask: THandleChangeTask = useCallback(
+        (index, type = "archive") => {
             const newItems = [...tasks];
             newItems.splice(index, 1);
 
@@ -71,8 +78,21 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
             }
 
             setTasks((prev) => {
-                const taskIndex = [...prev];
-                taskIndex[index].isDone = true;
+                let taskIndex = [...prev];
+                switch (type) {
+                    case "delete":
+                        taskIndex = taskIndex.filter(
+                            (_, _index) => _index !== index,
+                        );
+                        break;
+                    case "unarchive":
+                        taskIndex[index].isDone = false;
+                        break;
+
+                    default:
+                        taskIndex[index].isDone = true;
+                        break;
+                }
                 storageSet(STORAGE_KEY, taskIndex);
                 return taskIndex;
             });
@@ -84,11 +104,10 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
         <TaskFramerContext.Provider
             value={{
                 controls,
-                completeTask: tasks.filter((task) => task.isDone).length,
-                items: tasks,
+                completeTask,
+                items: tasks ?? [],
                 onAdd,
-                onDelete,
-                total: tasks.length,
+                handleChangeTask,
             }}
         >
             {children}

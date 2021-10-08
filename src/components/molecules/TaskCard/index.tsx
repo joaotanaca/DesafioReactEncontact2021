@@ -1,10 +1,11 @@
 import { motion, PanInfo, useAnimation } from "framer-motion";
 import React, { useCallback, useState } from "react";
 import { IoMdDoneAll, IoIosArrowDown } from "react-icons/io";
+import { MdUnarchive, MdDelete } from "react-icons/md";
 import Button from "src/components/atoms/Button";
 import Heading from "src/components/atoms/Heading";
 import Text from "src/components/atoms/Text";
-import { useTaskFramer } from "src/context/taskFramer";
+import { TTypeFunctionTask, useTaskFramer } from "src/context/taskFramer";
 import TTask from "src/interfaces/Task";
 import { SchemasColors } from "src/styles/theme";
 import { BackgroudSection, TaskContainer } from "./styles";
@@ -13,11 +14,38 @@ type TProps = {
     task: TTask & { bottom: boolean };
     onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
     colorTheme?: SchemasColors;
+    type?: TTypeFunctionTask;
     index: number;
 };
 
-const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
-    const { onDelete, total } = useTaskFramer();
+const backgroundIcons = {
+    delete: (
+        <MdDelete
+            size={30}
+            className="absolute  transform -translate-y-1/2 top-1/2 left-4"
+        />
+    ),
+    unarchive: (
+        <MdUnarchive
+            size={30}
+            className="absolute  transform -translate-y-1/2 top-1/2 left-4"
+        />
+    ),
+    archive: (
+        <IoMdDoneAll
+            size={30}
+            className="absolute  transform -translate-y-1/2 top-1/2 left-4"
+        />
+    ),
+};
+
+const TaskCard: React.FC<TProps> = ({
+    task,
+    index,
+    type = "archive",
+    ...props
+}) => {
+    const { handleChangeTask, items } = useTaskFramer();
     const controls = useAnimation();
     const [open, setOpen] = useState(false);
     const handleDragEnd = useCallback(
@@ -29,7 +57,7 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
                     x: "100%",
                     transition: { duration: 0.2 },
                 });
-                onDelete(index);
+                handleChangeTask(index, type);
             } else {
                 controls.start({
                     x: 0,
@@ -38,14 +66,14 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
                 });
             }
         },
-        [controls, index, onDelete],
+        [controls, handleChangeTask, index, type],
     );
 
     return (
         <TaskContainer
             className="w-full relative overflow-hidden rounded-xl "
             style={{
-                marginBottom: total - 1 === index ? 0 : 10,
+                marginBottom: items.length - 1 === index ? 0 : 10,
                 willChange: "transform",
                 cursor: "grab",
             }}
@@ -53,11 +81,8 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
             layout
             {...props}
         >
-            <BackgroudSection>
-                <IoMdDoneAll
-                    size={30}
-                    className="absolute  transform -translate-y-1/2 top-1/2 left-4"
-                />
+            <BackgroudSection type={type}>
+                {backgroundIcons[type]}
             </BackgroudSection>
             <motion.div
                 className="card rounded-xl  flex flex-col items-start justify-between w-full h-full relative overflow-hidden z-1"
@@ -74,7 +99,7 @@ const TaskCard: React.FC<TProps> = ({ task, index, ...props }) => {
                         {task.title}
                         <Button
                             className="z-50"
-                            onClick={(event) => {
+                            onClick={() => {
                                 setOpen((prev) => !prev);
                             }}
                             colorTheme={props.colorTheme}

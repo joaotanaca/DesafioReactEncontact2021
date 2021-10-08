@@ -19,13 +19,17 @@ const schemas = {
 
 const theme = {
     ...schemas,
-    danger: {
+    delete: {
         accentColor: "#9A031E",
         fontColor: "#FFF",
     },
-    success: {
+    archive: {
         accentColor: "#26A96C",
         fontColor: "#FFF",
+    },
+    unarchive: {
+        accentColor: "#F9A03F",
+        fontColor: "#000",
     },
     background: "#FFFFFF",
     fontColor: "#362627",

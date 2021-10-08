@@ -13,12 +13,12 @@ const colorsTheme: SchemasColors[] = [
 ];
 
 const TasksCards = () => {
-    const { items, controls, completeTask, total } = useTaskFramer();
+    const { items, controls, completeTask } = useTaskFramer();
 
     const renderTasks = useMemo(
         () =>
-            items.map((task, index) =>
-                !task.isDone ? (
+            items?.map((task, index) =>
+                task && !task?.isDone ? (
                     <TaskCard
                         index={index}
                         key={task.id}
@@ -43,7 +43,8 @@ const TasksCards = () => {
         >
             <div className="px-4 col-span-full">
                 <Text fontWeight="semibold">
-                    Você tem {total - completeTask} tarefas não finalizadas
+                    Você tem {items.length - completeTask} tarefas não
+                    finalizadas
                 </Text>
             </div>
             <motion.div

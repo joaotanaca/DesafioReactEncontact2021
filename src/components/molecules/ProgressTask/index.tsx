@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { FaTasks } from "react-icons/fa";
+import Modal from "src/components/atoms/Modal";
 import Text from "src/components/atoms/Text";
 import { useTaskFramer } from "src/context/taskFramer";
 import styled, { useTheme } from "styled-components";
+import ModalTasksComplete from "../ModalTasksComplete";
 
 const ContainerProgressTask = styled.div.attrs({
     className:
@@ -17,11 +19,12 @@ const ContainerProgressTask = styled.div.attrs({
 `;
 
 const ProgressTask: React.FC = () => {
+    const [open, setOpen] = useState(false);
     const { secondary } = useTheme();
-    const { completeTask, total } = useTaskFramer();
+    const { completeTask, items } = useTaskFramer();
     const percentage = useMemo(
-        () => completeTask / (total * 0.01),
-        [completeTask, total],
+        () => completeTask / (items.length * 0.01),
+        [completeTask, items.length],
     );
 
     return (
@@ -44,17 +47,21 @@ const ProgressTask: React.FC = () => {
                         style={{ color: secondary.accentColor }}
                         className="font-semibold"
                     >
-                        {completeTask}/{total}{" "}
+                        {completeTask}/{items.length}{" "}
                     </span>
                     tarefas prontas
                 </Text>
             </div>
             <div className="col-start-4 flex justify-end items-start h-full pt-2 pr-2">
                 <FaTasks
+                    onClick={() => setOpen(true)}
                     size={20}
                     className="cursor-pointer"
                     title="Tarefas feitas"
                 />
+                <Modal open={open} setOpen={setOpen}>
+                    <ModalTasksComplete />
+                </Modal>
             </div>
         </ContainerProgressTask>
     );
