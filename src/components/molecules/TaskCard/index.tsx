@@ -1,12 +1,12 @@
 import { motion, PanInfo, useAnimation } from "framer-motion";
 import React, { useCallback, useState } from "react";
 import { IoMdDoneAll, IoIosArrowDown } from "react-icons/io";
-import Button from "@atoms/Button";
-import Heading from "@atoms/Heading";
-import Text from "@atoms/Text";
-import { useTaskFramer } from "@context/taskFramer";
-import TTask from "@interfaces/Task";
-import { SchemasColors } from "@styles/theme";
+import Button from "src/components/atoms/Button";
+import Heading from "src/components/atoms/Heading";
+import Text from "src/components/atoms/Text";
+import { useTaskFramer } from "src/context/taskFramer";
+import TTask from "src/interfaces/Task";
+import { SchemasColors } from "src/styles/theme";
 import { BackgroudSection, TaskContainer } from "./styles";
 
 type TProps = {

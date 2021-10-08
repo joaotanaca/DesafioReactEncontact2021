@@ -7,8 +7,8 @@ import {
     ReactNode,
     useCallback,
 } from "react";
-import TTask from "@interfaces/Task";
-import { getHeight } from "@lib/taskFramer";
+import TTask from "src/interfaces/Task";
+import { getHeight } from "src/lib/taskFramer";
 
 type TOnDelete = (index: number) => void;
 

@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { AnimateSharedLayout, motion } from "framer-motion";
-import { useTaskFramer } from "@context/taskFramer";
-import { SchemasColors } from "@styles/theme";
-import Text from "@atoms/Text";
-import TaskCard from "@molecules/TaskCard";
+import { useTaskFramer } from "src/context/taskFramer";
+import { SchemasColors } from "src/styles/theme";
+import Text from "src/components/atoms/Text";
+import TaskCard from "src/components/molecules/TaskCard";
 
 const colorsTheme: SchemasColors[] = [
     "primary",

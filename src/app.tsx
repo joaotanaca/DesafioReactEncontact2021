@@ -1,5 +1,5 @@
-import Header from "organismos/Header";
-import TasksCards from "organismos/TasksCards";
+import Header from "./components/organismos/Header";
+import TasksCards from "./components/organismos/TasksCards";
 import Template from "./components/template";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
