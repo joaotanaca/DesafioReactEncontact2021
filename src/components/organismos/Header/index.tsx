@@ -6,8 +6,10 @@ import Button from "src/components/atoms/Button";
 import Heading from "src/components/atoms/Heading";
 import ProgressTask from "src/components/molecules/ProgressTask";
 import useDarkMode from "src/hooks/useDarkMode";
+import useMobile from "src/hooks/useMobile";
 
 const Header: React.FC = () => {
+    const mobile = useMobile();
     const { toogleMode, mode } = useDarkMode();
     const variants: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
     return (
@@ -24,7 +26,7 @@ const Header: React.FC = () => {
                 <Button
                     onClick={toogleMode}
                     className="relative overflow-hidden"
-                    style={{ width: 40 }}
+                    style={{ width: mobile ? 38 : 40 }}
                 >
                     <motion.div
                         className="flex justify-between"
