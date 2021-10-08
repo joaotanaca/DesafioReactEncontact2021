@@ -38,7 +38,7 @@ const ProgressTask: React.FC = () => {
                     })}
                 />
             </div>
-            <div className="text-left col-span-2">
+            <div className="text-center sm:text-left col-span-2">
                 <Text fontWeight="medium" fontSize="18px">
                     <span
                         style={{ color: secondary.accentColor }}

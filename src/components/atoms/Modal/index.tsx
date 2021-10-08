@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
+import useMobile from "src/hooks/useMobile";
+import { mixins } from "src/styles/mixins";
 import styled from "styled-components";
 
 type TProps = { open: boolean };
@@ -10,16 +12,27 @@ const ContainerModal = styled(motion.div).attrs({
     background-color: rgba(255, 255, 255, 0.8);
     .modal {
         position: absolute;
-        width: 400px;
+        width: 100%;
         background-color: white;
-        border: 2px solid ${({ theme }) => theme.fontColor};
+        border-top: 2px solid ${({ theme }) => theme.fontColor};
+
+        ${({ theme }) => mixins.sm`
+            width: 400px;
+            border: 2px solid ${theme.fontColor};
+        `}
     }
 `;
 
 const Modal: React.FC<TProps> = ({ open, children }) => {
+    const mobile = useMobile();
     return open ? (
-        <ContainerModal transition={{ type: "spring" }}>
-            <motion.div className="modal rounded-xl transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4">
+        <ContainerModal>
+            <motion.div
+                initial={{ top: mobile ? "150%" : "60%" }}
+                animate={{ top: mobile ? "85%" : "50%" }}
+                transition={{ type: "sprint", velocity: mobile ? 4 : 2 }}
+                className="modal sm:rounded-xl transform  sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 pt-0 sm:pt-4 p-4"
+            >
                 {children}
             </motion.div>
         </ContainerModal>
