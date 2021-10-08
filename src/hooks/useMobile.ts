@@ -12,7 +12,6 @@ function useMobile(): boolean {
             window.removeEventListener("resize", handler);
         };
     }, []);
-
     return mobile;
 }
 

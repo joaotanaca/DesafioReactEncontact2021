@@ -1,8 +1,8 @@
 import React from "react";
 import { IoIosAdd } from "react-icons/io";
-import Button from "src/components/atoms/Button";
-import Heading from "src/components/atoms/Heading";
-import ProgressTask from "src/components/molecules/ProgressTask";
+import Button from "@atoms/Button";
+import Heading from "@atoms/Heading";
+import ProgressTask from "@molecules/ProgressTask";
 
 const Header: React.FC = () => {
     return (

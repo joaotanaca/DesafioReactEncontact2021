@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { FaTasks } from "react-icons/fa";
-import Text from "src/components/atoms/Text";
-import { useTaskFramer } from "src/context/taskFramer";
+import Text from "@atoms/Text";
+import { useTaskFramer } from "@context/taskFramer";
 import styled, { useTheme } from "styled-components";
 
 const ContainerProgressTask = styled.div.attrs({

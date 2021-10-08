@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import { SchemasColors } from "src/styles/theme";
+import { SchemasColors } from "@styles/theme";
 import styled from "styled-components";
 
 type TProps = HTMLAttributes<HTMLButtonElement> & {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TTask from "src/interfaces/Task";
+import TTask from "@interfaces/Task";
 
 const height = 70;
 const padding = 10;
