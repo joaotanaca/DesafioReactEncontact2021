@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../Text";
 
-type TProps = {
+type TProps = React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> & {
     title: string;
     id: string;
     textarea?: boolean;
@@ -22,13 +22,29 @@ const InputStyled = styled.label`
     }
 `;
 
-const Input: React.FC<TProps> = ({ title, id, textarea = false }) => (
+const Input: React.FC<TProps> = ({
+    title,
+    id,
+    textarea = false,
+    className,
+    ...props
+}) => (
     <InputStyled className="flex flex-col" htmlFor={id}>
         <Text fontSize="20px">{title}</Text>
         {textarea ? (
-            <textarea className="rounded-md p-1 pl-2 mt-2" id={id} name={id} />
+            <textarea
+                className={`rounded-md p-1 pl-2 mt-2 ${className}`}
+                id={id}
+                name={id}
+                {...props}
+            />
         ) : (
-            <input className="rounded-md p-4 pl-2 mt-2" id={id} name={id} />
+            <input
+                className={`rounded-md p-4 pl-2 mt-2 ${className}`}
+                id={id}
+                name={id}
+                {...props}
+            />
         )}
     </InputStyled>
 );
