@@ -6,11 +6,12 @@ import { useIntl } from "react-intl";
 import Button from "src/components/atoms/Button";
 import Heading from "src/components/atoms/Heading";
 import Modal from "src/components/atoms/Modal";
+import Text from "src/components/atoms/Text";
 import ModalCreateTask from "src/components/molecules/ModalCreateTask";
 import ProgressTask from "src/components/molecules/ProgressTask";
 import { LOCALES } from "src/config/intl";
+import { useLocale } from "src/context/locale";
 import useDarkMode from "src/hooks/useDarkMode";
-import useLocale from "src/hooks/useLocale";
 import useMobile from "src/hooks/useMobile";
 
 const Header: React.FC = () => {
@@ -19,7 +20,11 @@ const Header: React.FC = () => {
     const { toogleMode, mode } = useDarkMode();
     const { locale, setLocale } = useLocale();
     const { formatMessage } = useIntl();
-    const variants: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
+    const variantsDarkMode: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
+    const variantsIntl: Variants = {
+        [LOCALES.PORTUGUES]: { x: 1.3 },
+        [LOCALES.ENGLISH]: { x: "-62%" },
+    };
     return (
         <div className="grid grid-cols-4 items-center w-full pt-12 pb-10">
             <Heading
@@ -31,7 +36,7 @@ const Header: React.FC = () => {
             </Heading>
             <ProgressTask />
             <div className="col-span-4 sm:col-span-1 order-2 sm:order-3 flex justify-evenly mt-10">
-                {/* <Button
+                <Button
                     onClick={() =>
                         setLocale(
                             !(locale === LOCALES.PORTUGUES)
@@ -45,14 +50,26 @@ const Header: React.FC = () => {
                 >
                     <motion.div
                         className="flex justify-between"
-                        animate={mode}
-                        variants={variants}
+                        animate={
+                            locale === LOCALES.PORTUGUES
+                                ? LOCALES.PORTUGUES
+                                : LOCALES.ENGLISH
+                        }
+                        variants={variantsIntl}
                         style={{ width: "250%" }}
                     >
-                        <MdDarkMode size={24} />
-                        <MdLightMode size={24} />
+                        <div>
+                            <Text fontWeight="semibold" fontColor="#FFF">
+                                BR
+                            </Text>
+                        </div>
+                        <div>
+                            <Text fontWeight="semibold" fontColor="#FFF">
+                                EN
+                            </Text>
+                        </div>
                     </motion.div>
-                </Button> */}
+                </Button>
                 <Button
                     onClick={toogleMode}
                     className="relative overflow-hidden"
@@ -62,7 +79,7 @@ const Header: React.FC = () => {
                     <motion.div
                         className="flex justify-between"
                         animate={mode}
-                        variants={variants}
+                        variants={variantsDarkMode}
                         style={{ width: "250%" }}
                     >
                         <MdDarkMode size={24} />
