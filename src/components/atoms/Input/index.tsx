@@ -28,7 +28,7 @@ const Input: React.FC<TProps> = ({ title, id, textarea = false }) => (
         {textarea ? (
             <textarea className="rounded-md p-1 pl-2 mt-2" id={id} name={id} />
         ) : (
-            <input className="rounded-md p-1 pl-2 mt-2" id={id} name={id} />
+            <input className="rounded-md p-4 pl-2 mt-2" id={id} name={id} />
         )}
     </InputStyled>
 );

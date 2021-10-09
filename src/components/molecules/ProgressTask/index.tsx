@@ -1,5 +1,4 @@
-import React, { useMemo, useState } from "react";
-// import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import React, { useState } from "react";
 import { FaTasks } from "react-icons/fa";
 import Modal from "src/components/atoms/Modal";
 import Text from "src/components/atoms/Text";
@@ -22,25 +21,9 @@ const ProgressTask: React.FC = () => {
     const [open, setOpen] = useState(false);
     const { secondary } = useTheme();
     const { completeTask, items } = useTaskFramer();
-    // const percentage = useMemo(
-    //     () => completeTask / (items.length * 0.01),
-    //     [completeTask, items.length],
-    // );
 
     return (
         <ContainerProgressTask>
-            {/* <div className="col-span-1" style={{ width: 80, height: 80 }}>
-                <CircularProgressbar
-                    value={percentage}
-                    text={`${Math.round(percentage) ?? 0}%`}
-                    counterClockwise
-                    styles={buildStyles({
-                        pathColor: secondary.accentColor,
-                        textColor: secondary.accentColor,
-                        textSize: "1.5rem",
-                    })}
-                />
-            </div> */}
             <div className="text-center sm:text-left col-span-2">
                 <Text fontWeight="medium" fontSize="18px">
                     <span
