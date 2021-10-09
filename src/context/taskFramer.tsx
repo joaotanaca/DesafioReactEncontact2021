@@ -65,10 +65,14 @@ export const TaskFramerProvider = ({ children }: { children?: ReactNode }) => {
 
     useEffect(() => {
         const storageTasks: TTask[] = storageGet(STORAGE_KEY);
+        const examples: boolean = storageGet("examples");
         const queryUrl = new URLSearchParams(window.location.search).get("q");
 
         setTasks(storageTasks.length ? storageTasks : todos);
-        !storageTasks.length && storageSet(STORAGE_KEY, todos);
+        if (!storageTasks.length && !examples) {
+            storageSet(STORAGE_KEY, todos);
+            storageSet("examples", true);
+        }
 
         if (queryUrl) setSearch(queryUrl);
     }, []);
