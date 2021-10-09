@@ -49,10 +49,11 @@ const ModalTasksComplete: React.FC = () => {
                     <MdDelete size={30} />
                 </Button>
             </div>
-            <div className="overflow-scroll" style={{ maxHeight: 500 }}>
-                <div className="flex flex-col gap-6 overflow-scroll">
-                    {renderTasks}
-                </div>
+            <div
+                className="overflow-hidden"
+                style={{ maxHeight: 500, overflowY: "scroll" }}
+            >
+                <div className="flex flex-col gap-6">{renderTasks}</div>
             </div>
         </>
     );

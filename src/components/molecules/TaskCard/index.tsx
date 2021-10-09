@@ -52,6 +52,7 @@ const TaskCard: React.FC<TProps> = ({
         async (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
             const offset = info.offset.x;
             const velocity = info.velocity.x;
+            setOpen(false);
             if (offset > 250 || velocity > 1000) {
                 await controls.start({
                     x: "100%",

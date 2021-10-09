@@ -15,6 +15,7 @@ export const BackgroudSection = styled.div.attrs({
 export const TaskContainer = styled(motion.div)<{
     colorTheme?: SchemasColors;
 }>`
+    height: min-content;
     .card {
         background-color: ${({ theme, colorTheme = "primary" }) =>
             theme[colorTheme].accentColor};
