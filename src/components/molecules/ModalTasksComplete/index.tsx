@@ -38,10 +38,7 @@ const ModalTasksComplete: React.FC = () => {
     );
     return (
         <>
-            <div
-                className="flex justify-between items-center mb-6"
-                style={{ minHeight: 300 }}
-            >
+            <div className="flex justify-between items-center mb-6">
                 <Text fontWeight="semibold" fontSize="20px">
                     {activeDelete
                         ? formatMessage({ id: "modalTaskCompleteDelete" })
@@ -57,7 +54,7 @@ const ModalTasksComplete: React.FC = () => {
             </div>
             <div
                 className="overflow-hidden"
-                style={{ maxHeight: 500, overflowY: "scroll" }}
+                style={{ minHeight: 500, maxHeight: 500, overflowY: "auto" }}
             >
                 <div className="flex flex-col gap-6">{renderTasks}</div>
             </div>

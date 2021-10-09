@@ -14,7 +14,7 @@ export const messages = {
         taskCardText2: " tarefas não finalizadas",
         taskCardinputPlaceholder: "Pesquisa",
         //ModalCreateTask
-        modalCreateTaskTitle: "Adicionar tarefa",
+        modalCreateTaskSubmit: "Adicionar tarefa",
         modalCreateTaskTitleInput: "Titulo: ",
         modalCreateTaskDescriptionInput: "Descrição: ",
         //ModalTaskComplete

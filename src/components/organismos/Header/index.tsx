@@ -22,20 +22,20 @@ const Header: React.FC = () => {
     const { formatMessage } = useIntl();
     const variantsDarkMode: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
     const variantsIntl: Variants = {
-        [LOCALES.PORTUGUES]: { x: 1.3 },
-        [LOCALES.ENGLISH]: { x: "-62%" },
+        [LOCALES.PORTUGUES]: { x: mobile ? 3.3 : 1.3 },
+        [LOCALES.ENGLISH]: { x: mobile ? "-65%" : "-62%" },
     };
     return (
         <div className="grid grid-cols-4 items-center w-full pt-12 pb-10">
             <Heading
                 level={1}
                 fontWeight="semibold"
-                className="col-span-4 sm:col-span-1 order-2"
+                className="col-span-4 sm:col-span-1 order-2 text-center sm:text-left"
             >
                 {formatMessage({ id: "headerTitle" })}
             </Heading>
             <ProgressTask />
-            <div className="col-span-4 sm:col-span-1 order-2 sm:order-3 flex justify-evenly mt-10">
+            <div className="col-span-4 sm:col-span-1 order-2 sm:order-3 flex justify-evenly mt-10 sm:mt-0">
                 <Button
                     onClick={() =>
                         setLocale(
