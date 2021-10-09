@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
 export const LOCALES = {
-    ENGLISH: "en-US",
-    PORTUGUES: "pt-br",
+    ENGLISH: "en",
+    PORTUGUES: "pt-BR",
 };
 
 export const messages = {
-    [LOCALES.PORTUGUES]: {
+    "pt-BR": {
         //Header
         headerTitle: "Lista de tarefas",
         //TaskCard
@@ -23,7 +23,7 @@ export const messages = {
         //ProgressTask
         progressTask: "tarefas prontas",
     },
-    [LOCALES.ENGLISH]: {
+    en: {
         //Header
         headerTitle: "To-do list",
         //TaskCard

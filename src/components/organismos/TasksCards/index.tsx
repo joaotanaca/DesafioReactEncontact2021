@@ -5,7 +5,7 @@ import { SchemasColors } from "src/styles/theme";
 import Text from "src/components/atoms/Text";
 import TaskCard from "src/components/molecules/TaskCard";
 import Input from "src/components/atoms/Input";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 const colorsTheme: SchemasColors[] = [
     "primary",

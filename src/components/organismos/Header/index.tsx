@@ -8,13 +8,16 @@ import Heading from "src/components/atoms/Heading";
 import Modal from "src/components/atoms/Modal";
 import ModalCreateTask from "src/components/molecules/ModalCreateTask";
 import ProgressTask from "src/components/molecules/ProgressTask";
+import { LOCALES } from "src/config/intl";
 import useDarkMode from "src/hooks/useDarkMode";
+import useLocale from "src/hooks/useLocale";
 import useMobile from "src/hooks/useMobile";
 
 const Header: React.FC = () => {
     const [open, setOpen] = useState(false);
     const mobile = useMobile();
     const { toogleMode, mode } = useDarkMode();
+    const { locale, setLocale } = useLocale();
     const { formatMessage } = useIntl();
     const variants: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
     return (
@@ -22,12 +25,34 @@ const Header: React.FC = () => {
             <Heading
                 level={1}
                 fontWeight="semibold"
-                className="col-span-3 sm:col-span-1 order-2"
+                className="col-span-4 sm:col-span-1 order-2"
             >
                 {formatMessage({ id: "headerTitle" })}
             </Heading>
             <ProgressTask />
-            <div className="order-2 sm:order-3 flex justify-evenly">
+            <div className="col-span-4 sm:col-span-1 order-2 sm:order-3 flex justify-evenly mt-10">
+                {/* <Button
+                    onClick={() =>
+                        setLocale(
+                            !(locale === LOCALES.PORTUGUES)
+                                ? "PORTUGUES"
+                                : "ENGLISH",
+                        )
+                    }
+                    className="relative overflow-hidden"
+                    style={{ width: mobile ? 38 : 40 }}
+                    minContent
+                >
+                    <motion.div
+                        className="flex justify-between"
+                        animate={mode}
+                        variants={variants}
+                        style={{ width: "250%" }}
+                    >
+                        <MdDarkMode size={24} />
+                        <MdLightMode size={24} />
+                    </motion.div>
+                </Button> */}
                 <Button
                     onClick={toogleMode}
                     className="relative overflow-hidden"

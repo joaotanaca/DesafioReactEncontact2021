@@ -38,7 +38,10 @@ const ModalTasksComplete: React.FC = () => {
     );
     return (
         <>
-            <div className="flex justify-between items-center mb-6">
+            <div
+                className="flex justify-between items-center mb-6"
+                style={{ minHeight: 300 }}
+            >
                 <Text fontWeight="semibold" fontSize="20px">
                     {activeDelete
                         ? formatMessage({ id: "modalTaskCompleteDelete" })
