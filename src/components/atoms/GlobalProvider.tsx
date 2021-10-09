@@ -10,12 +10,12 @@ import theme from "../../styles/theme";
 const loadFeatures = () => import("framer-motion").then((res) => res.domMax);
 
 const GlobalProvider: React.FC = ({ children }) => {
-    const locale = LOCALES.ENGLISH;
+    const locale = LOCALES.PORTUGUES;
     return (
         <IntlProvider
             messages={messages[locale] as any}
             locale={locale}
-            defaultLocale={LOCALES.ENGLISH}
+            defaultLocale={LOCALES.PORTUGUES}
         >
             <LazyMotion features={loadFeatures}>
                 <ThemeProvider theme={theme}>

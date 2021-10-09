@@ -10,7 +10,7 @@ export const messages = {
         //Header
         headerTitle: "Lista de tarefas",
         //TaskCard
-        taskCardText1: "Você tem",
+        taskCardText1: "Você tem ",
         taskCardText2: " tarefas não finalizadas",
         taskCardinputPlaceholder: "Pesquisa",
         //ModalCreateTask
