@@ -1,5 +1,7 @@
 const storageGet = (item: string) =>
-    JSON.parse(localStorage.getItem(item) || "[]");
+    localStorage.getItem(item)
+        ? JSON.parse(localStorage.getItem(item) ?? "[]")
+        : null;
 
 const storageSet = (item: string, value: any) =>
     localStorage.setItem(item, JSON.stringify(value));
