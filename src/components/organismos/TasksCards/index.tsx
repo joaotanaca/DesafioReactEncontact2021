@@ -5,6 +5,7 @@ import { SchemasColors } from "src/styles/theme";
 import Text from "src/components/atoms/Text";
 import TaskCard from "src/components/molecules/TaskCard";
 import Input from "src/components/atoms/Input";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const colorsTheme: SchemasColors[] = [
     "primary",
@@ -22,6 +23,7 @@ const TasksCards = () => {
         itemsFiltered,
         search,
     } = useTaskFramer();
+    const { formatMessage } = useIntl();
 
     const renderTasks = useMemo(
         () =>
@@ -51,15 +53,18 @@ const TasksCards = () => {
         >
             <div className="mb-10 col-span-full">
                 <Text fontWeight="semibold">
-                    Você tem {items.length - completeTask} tarefas não
-                    finalizadas
+                    {formatMessage({ id: "taskCardText1" })}
+                    {items.length - completeTask}{" "}
+                    {formatMessage({ id: "taskCardText2" })}
                 </Text>
                 <Input
                     style={{ padding: "0.5rem", margin: "15px 0 0" }}
                     defaultValue={search}
                     title=""
                     id="search"
-                    placeholder="Pesquisa"
+                    placeholder={formatMessage({
+                        id: "taskCardinputPlaceholder",
+                    })}
                     onChange={(event) =>
                         handleSearch(event.currentTarget.value)
                     }

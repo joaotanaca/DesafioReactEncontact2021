@@ -20,6 +20,7 @@ export default createGlobalStyle`
         background-color: ${({ theme }) => theme.background};
         font-family: 'Open Sans', sans-serif;
         min-height:100vh;
+        margin-bottom: 40px;
     }
     h1,h2,h3,h4,h5,h6{
         color: ${({ theme }) => theme.fontColor};

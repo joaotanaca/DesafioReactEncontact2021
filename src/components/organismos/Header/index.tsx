@@ -2,6 +2,7 @@ import { motion, Variants } from "framer-motion";
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useIntl } from "react-intl";
 import Button from "src/components/atoms/Button";
 import Heading from "src/components/atoms/Heading";
 import Modal from "src/components/atoms/Modal";
@@ -14,6 +15,7 @@ const Header: React.FC = () => {
     const [open, setOpen] = useState(false);
     const mobile = useMobile();
     const { toogleMode, mode } = useDarkMode();
+    const { formatMessage } = useIntl();
     const variants: Variants = { dark: { x: 0 }, light: { x: "-60%" } };
     return (
         <div className="grid grid-cols-4 items-center w-full pt-12 pb-10">
@@ -22,7 +24,7 @@ const Header: React.FC = () => {
                 fontWeight="semibold"
                 className="col-span-3 sm:col-span-1 order-2"
             >
-                Lista de tarefas
+                {formatMessage({ id: "headerTitle" })}
             </Heading>
             <ProgressTask />
             <div className="order-2 sm:order-3 flex justify-evenly">

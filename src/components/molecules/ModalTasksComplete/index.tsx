@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { MdDelete } from "react-icons/md";
+import { useIntl } from "react-intl";
 import Button from "src/components/atoms/Button";
 import Text from "src/components/atoms/Text";
 import { useTaskFramer } from "src/context/taskFramer";
@@ -14,8 +15,10 @@ const colorsTheme: SchemasColors[] = [
 ];
 
 const ModalTasksComplete: React.FC = () => {
-    const { items } = useTaskFramer();
     const [activeDelete, setActiveDelete] = useState(false);
+    const { items } = useTaskFramer();
+    const { formatMessage } = useIntl();
+
     const renderTasks = useMemo(
         () =>
             items?.map((task, index) =>
@@ -38,8 +41,8 @@ const ModalTasksComplete: React.FC = () => {
             <div className="flex justify-between items-center mb-6">
                 <Text fontWeight="semibold" fontSize="20px">
                     {activeDelete
-                        ? "Arraste as tarefas para deletar"
-                        : "Tarefas completadas"}
+                        ? formatMessage({ id: "modalTaskCompleteDelete" })
+                        : formatMessage({ id: "modalTaskCompleteUnarchive" })}
                 </Text>
                 <Button
                     style={{ height: "min-content" }}

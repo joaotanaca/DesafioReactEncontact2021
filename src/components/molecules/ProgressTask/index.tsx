@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaTasks } from "react-icons/fa";
+import { FormattedMessage } from "react-intl";
 import Modal from "src/components/atoms/Modal";
 import Text from "src/components/atoms/Text";
 import { useTaskFramer } from "src/context/taskFramer";
@@ -32,7 +33,7 @@ const ProgressTask: React.FC = () => {
                     >
                         {completeTask}/{items.length}{" "}
                     </span>
-                    tarefas prontas
+                    <FormattedMessage id="progressTask" />
                 </Text>
             </div>
             <div className="col-start-4 flex justify-end items-start h-full">
